@@ -71,7 +71,7 @@ var build = function( posts ) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Posts', posts: build( posts ) });
+  res.render('index', { title: 'Sunstone Podcast Preview', posts: build( posts ) });
 });
 
 module.exports = router;
