@@ -8,27 +8,34 @@ block content
 		table.table.table-hover.table-striped.table-bordered
 			thead
 				tr
-					td(colspan="2")= val.Title
+					td(colspan="2")
+						strong= val.Title
 			tbody
 				tr
-					td Description
+					td.two-hundred Description
 					td= val.Description
 
 				tr
-					td Presenters
+					td.two-hundred Presenters
 					td
 						ul
 							each presenter in val.Presenters
 								li= presenter
 
 				tr
-					td Podcast URL
-					td= val.URL
-
-				tr
-					td Slug
+					td.two-hundred Slug
 					td= val.Audio
 
 				tr
-					td Event
+					td.two-hundred Event
 					td= val.year + ' ' + val.event + ' Symposium'
+
+				tr
+					td.two-hundred Podcast URL
+					td= val.URL
+
+				tr
+					td.two-hundred Podcast Audio
+					td
+						audio(controls preload="none")
+							source(src=val.URL type="audio/mpeg")
