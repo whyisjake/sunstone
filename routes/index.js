@@ -53,6 +53,12 @@ var build = function( posts ) {
 			}
 		}
 
+		var desc = posts[i].Description;
+
+		if ( desc !== null && desc.length > 0 ) {
+			posts[i].Description = posts[i].Description.replace( slug + ',', '' );
+		}
+
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
 
