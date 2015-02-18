@@ -48,6 +48,9 @@ var build = function( posts ) {
 		if ( presenters.length > 0 ) {
 			if ( presenters.indexOf(',') != -1 ) {
 				posts[i].Presenters = presenters.split(',');
+				for ( var idx = posts[i].Presenters.length - 1; idx >= 0; idx-- ) {
+					posts[i].Presenters[ idx ] = posts[i].Presenters[idx].trim();
+				}
 			} else {
 				posts[i].Presenters = [ presenters ];
 			}
