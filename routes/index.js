@@ -19,8 +19,8 @@ function get_the_event( post ) {
 		return 'San Francisco';
 	} else if ( post.tag == 'NE' ) {
 		return 'Northeast';
-	} else if ( post.tag == 'KL' ) {
-		return 'Kirtland';
+	} else if ( post.tag == 'CC' ) {
+		return 'Christ Conference';
 	} else if ( post.tag == 'KL' ) {
 		return 'Kirtland';
 	} else if ( post.tag == 'KL' ) {
