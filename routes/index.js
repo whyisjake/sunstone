@@ -52,6 +52,8 @@ var build = function( posts ) {
 		if ( presenters.length > 0 ) {
 			if ( presenters.indexOf(',') != -1 ) {
 				posts[i].Presenters = presenters.split(',');
+			} else {
+				posts[i].Presenters = [ presenters ];
 			}
 		}
 
