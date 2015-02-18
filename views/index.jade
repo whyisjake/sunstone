@@ -1,0 +1,34 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+
+	each val in posts
+		table.table.table-hover.table-striped.table-bordered
+			thead
+				tr
+					td(colspan="2")= val.Title
+			tbody
+				tr
+					td Description
+					td= val.Description
+
+				tr
+					td Presenters
+					td
+						ul
+							each presenter in val.Presenters
+								li= presenter
+
+				tr
+					td Podcast URL
+					td= val.URL
+
+				tr
+					td Slug
+					td= val.Audio
+
+				tr
+					td Event
+					td= val.year + ' ' + val.event
