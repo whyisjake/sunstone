@@ -49,8 +49,10 @@ var build = function( posts ) {
 
 		var presenters = posts[i].Presenters;
 
-		if ( posts[i].Presenters.length > 0	) {
-			posts[i].Presenters = presenters.split(',');
+		if ( presenters.length > 0 ) {
+			if ( presenters.indexOf(',') != -1 ) {
+				posts[i].Presenters = presenters.split(',');
+			}
 		}
 
 		// Let's get the event listing.
