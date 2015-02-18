@@ -21,12 +21,8 @@ function get_the_event( post ) {
 		return 'Northeast';
 	} else if ( post.tag == 'CC' ) {
 		return 'Christ Conference';
-	} else if ( post.tag == 'KL' ) {
-		return 'Kirtland';
-	} else if ( post.tag == 'KL' ) {
-		return 'Kirtland';
-	} else if ( post.tag == 'KL' ) {
-		return 'Kirtland';
+	} else if ( post.tag == 'DA' ) {
+		return 'Dallas';
 	} else {
 		return 'FIX ME PLEASE';
 	}
