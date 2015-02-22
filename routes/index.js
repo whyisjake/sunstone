@@ -79,4 +79,9 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Sunstone Podcast Preview', posts: build( posts ) });
 });
 
+/* GET home page. */
+router.get('/posts', function(req, res) {
+  res.send({ title: 'Sunstone Podcast Import', posts: build( posts ) });
+});
+
 module.exports = router;
