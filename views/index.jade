@@ -15,12 +15,13 @@ block content
 					td.two-hundred Description
 					td= val.Description
 
-				tr
-					td.two-hundred Presenters
-					td
-						ul
-							each presenter in val.Presenters
-								li= presenter
+				if ( val.presenters[0].length > 0 )
+					tr
+						td.two-hundred Presenters
+						td
+							ul
+								each presenter in val.presenters
+									li= presenter
 
 				tr
 					td.two-hundred Slug
