@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var posts = require("../second.json");
+var changeCase = require('change-case');
 
 function get_the_event( post ) {
 	if ( post.tag == 'SL' ) {
@@ -30,7 +31,8 @@ function get_the_event( post ) {
 
 var build = function( posts ) {
 	for ( var i = posts.length - 1; i >= 0; i-- ) {
-		var slug = posts[i].Audio;
+		var slug = posts[i].Audio,
+			title = posts[i].Title;
 
 		// Let's get the event key
 		posts[i].tag = slug.substr( 0, 2 );
@@ -66,6 +68,8 @@ var build = function( posts ) {
 
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
+
+		posts[i].Title = changeCase.titleCase( title );
 
 		posts[i].event = get_the_event( posts[i] );
 
