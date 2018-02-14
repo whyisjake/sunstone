@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var posts = require("../data/fifth.json");
+var posts = require("../data/sl2017.json");
 var changeCase = require('change-case');
+const _ = require('lodash');
 
 function get_the_event( post ) {
 	if ( post.tag == 'SL' ) {
@@ -39,15 +40,15 @@ var build = function( posts ) {
 
 		// Let's build the year.
 		var year = slug.substr( 2, 2 );
-		if ( year > 16 ) {
+		if ( year > 17 ) {
 			posts[i].year = 19 + year;
 		} else {
 			posts[i].year = 20 + year;
 		}
 
-		var presenters = posts[i].Presenters;
+		var presenters = _.get(posts[i], 'Presenters');
 
-		if ( presenters.length > 0 ) {
+		if ( presenters ) {
 			if ( presenters.indexOf(',') > 0 ) {
 				posts[i].presenters = presenters.split(',');
 				for ( var idx = posts[i].presenters.length - 1; idx >= 0; idx-- ) {
@@ -60,11 +61,8 @@ var build = function( posts ) {
 			posts[i].presenters = [presenters];
 		}
 
-		var desc = posts[i].Description;
-
-		if ( desc !== null && desc.length > 0 ) {
-			posts[i].Description = posts[i].Description.replace( slug + ',', '' );
-		}
+		var desc = _.get(posts[i], 'Description');
+		posts[i].Description = posts[i].Description.replace(slug + ',', '');
 
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
