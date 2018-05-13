@@ -1,7 +1,8 @@
 var express = require('express');
+var os = require('os');
 var router = express.Router();
-var posts = require("../data/sl2017.json");
-var changeCase = require('change-case');
+var posts = require("../data/sl2017-redux.json");
+var typogr = require('typogr');
 const _ = require('lodash');
 
 function get_the_event( post ) {
@@ -52,7 +53,13 @@ var build = function( posts ) {
 			if ( presenters.indexOf(',') > 0 ) {
 				posts[i].presenters = presenters.split(',');
 				for ( var idx = posts[i].presenters.length - 1; idx >= 0; idx-- ) {
+
 					posts[i].presenters[ idx ] = posts[i].presenters[idx].trim();
+				}
+			} else if ( presenters.indexOf(os.EOL)) {
+				posts[i].presenters = presenters.split(os.EOL)
+				for (var idx = posts[i].presenters.length - 1; idx >= 0; idx--) {
+					posts[i].presenters[idx] = posts[i].presenters[idx].trim();
 				}
 			} else {
 				posts[i].presenters = [presenters];
@@ -61,13 +68,16 @@ var build = function( posts ) {
 			posts[i].presenters = [presenters];
 		}
 
+		posts[i].URL = `http://sunstone.org/audio/${posts[i].Audio}.mp3`
+
 		var desc = _.get(posts[i], 'Description');
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
+		posts[i].Description = typogr(posts[i].Description).chain().initQuotes().smartypants().value();
 
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
 
-		posts[i].Title = changeCase.titleCase( title );
+		posts[i].Title = typogr(title).chain().initQuotes().smartypants().value();
 
 		posts[i].event = get_the_event( posts[i] );
 
@@ -84,6 +94,11 @@ router.get('/', function(req, res) {
 /* GET home page. */
 router.get('/posts', function(req, res) {
   res.send({ title: 'Sunstone Podcast Import', posts: build( posts ) });
+});
+
+/* GET home page. */
+router.get('/sheets', function (req, res) {
+	res.send({ title: 'Sunstone Podcast Import', posts: build(posts) });
 });
 
 module.exports = router;
