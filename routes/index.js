@@ -76,7 +76,6 @@ var build = function( posts ) {
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
 		posts[i].Description = typogr(markdown.toHTML(posts[i].Description)).chain().initQuotes().smartypants().value();
 
-
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
 
