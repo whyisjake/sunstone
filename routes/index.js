@@ -68,6 +68,8 @@ var build = function( posts ) {
 			posts[i].presenters = [presenters];
 		}
 
+		posts[i].presenters = _.filter(posts[i].presenters, function(o) { return o.length > 0; });
+
 		posts[i].URL = `http://sunstone.org/audio/${posts[i].Audio}.mp3`
 
 		var desc = _.get(posts[i], 'Description');
