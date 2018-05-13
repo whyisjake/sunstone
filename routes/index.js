@@ -4,7 +4,6 @@ var router = express.Router();
 var posts = require("../data/sl2017-redux.json");
 var typogr = require('typogr');
 const _ = require('lodash');
-var {markdown} = require("markdown");
 
 function get_the_event( post ) {
 	if ( post.tag == 'SL' ) {
@@ -74,7 +73,7 @@ var build = function( posts ) {
 
 		var desc = _.get(posts[i], 'Description');
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
-		posts[i].Description = typogr(markdown.toHTML(posts[i].Description)).chain().initQuotes().smartypants().value();
+		posts[i].Description = typogr(posts[i].Description).chain().initQuotes().smartypants().value();
 
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
@@ -100,7 +99,7 @@ router.get('/posts', function(req, res) {
 
 /* GET home page. */
 router.get('/sheets', function (req, res) {
-	res.send({ title: 'Sunstone Podcast Import', posts: build(posts) });
+	res.send({ title: 'Sunstone Podcast Import', posts: build( posts ) });
 });
 
 module.exports = router;
