@@ -4,6 +4,7 @@ var router = express.Router();
 var posts = require("../data/sl2017-redux.json");
 var typogr = require('typogr');
 const _ = require('lodash');
+var {markdown} = require("markdown");
 
 function get_the_event( post ) {
 	if ( post.tag == 'SL' ) {
@@ -71,8 +72,11 @@ var build = function( posts ) {
 		posts[i].URL = `http://sunstone.org/audio/${posts[i].Audio}.mp3`
 
 		var desc = _.get(posts[i], 'Description');
+
+		posts[i].Description = markdown.toHTML(posts[i].Description);
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
 		posts[i].Description = typogr(posts[i].Description).chain().initQuotes().smartypants().value();
+
 
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
