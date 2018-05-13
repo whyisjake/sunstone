@@ -9,11 +9,13 @@ block content
 			thead
 				tr
 					td(colspan="2")
-						strong= val.Title
+						- title = val.Title
+						strong !{title}
 			tbody
 				tr
+					- dek = val.Description
 					td.two-hundred Description
-					td= val.Description
+					td !{dek}
 
 				if ( val.presenters[0] )
 					tr
