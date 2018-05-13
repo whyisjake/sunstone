@@ -54,7 +54,6 @@ var build = function( posts ) {
 			if ( presenters.indexOf(',') > 0 ) {
 				posts[i].presenters = presenters.split(',');
 				for ( var idx = posts[i].presenters.length - 1; idx >= 0; idx-- ) {
-
 					posts[i].presenters[ idx ] = posts[i].presenters[idx].trim();
 				}
 			} else if ( presenters.indexOf(os.EOL)) {
@@ -72,10 +71,8 @@ var build = function( posts ) {
 		posts[i].URL = `http://sunstone.org/audio/${posts[i].Audio}.mp3`
 
 		var desc = _.get(posts[i], 'Description');
-
-		posts[i].Description = markdown.toHTML(posts[i].Description);
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
-		posts[i].Description = typogr(posts[i].Description).chain().initQuotes().smartypants().value();
+		posts[i].Description = typogr(markdown.toHTML(posts[i].Description)).chain().initQuotes().smartypants().value();
 
 
 		// Let's get the event listing.
