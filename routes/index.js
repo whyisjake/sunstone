@@ -69,7 +69,7 @@ var build = function( posts ) {
 
 		posts[i].presenters = _.filter(posts[i].presenters, function(o) { return o.length > 0; });
 
-		posts[i].URL = `http://sunstone.org/audio/${posts[i].Audio}.mp3`
+		posts[i].URL = `https://www.sunstonemagazine.com/audio/${posts[i].Audio}.mp3`
 
 		var desc = _.get(posts[i], 'Description');
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
