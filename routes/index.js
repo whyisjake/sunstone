@@ -1,7 +1,7 @@
 var express = require('express');
 var os = require('os');
 var router = express.Router();
-var posts = require("../data/sl2017-redux.json");
+var posts = require("../data/sl2018.json");
 var typogr = require('typogr');
 const _ = require('lodash');
 
@@ -36,12 +36,14 @@ var build = function( posts ) {
 		var slug = posts[i].Audio,
 			title = posts[i].Title;
 
+			console.log(posts[i]);
+
 		// Let's get the event key
 		posts[i].tag = slug.substr( 0, 2 );
 
 		// Let's build the year.
 		var year = slug.substr( 2, 2 );
-		if ( year > 17 ) {
+		if ( year > 18 ) {
 			posts[i].year = 19 + year;
 		} else {
 			posts[i].year = 20 + year;
@@ -74,6 +76,8 @@ var build = function( posts ) {
 		var desc = _.get(posts[i], 'Description');
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
 		posts[i].Description = typogr(posts[i].Description).chain().initQuotes().smartypants().value();
+		posts[i].Description = posts[i].Description.replace(/\n?\r\n/g, '<br />' );
+
 
 		// Let's get the event listing.
 		posts[i].number = slug.substr( 4 );
