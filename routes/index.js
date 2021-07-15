@@ -1,8 +1,9 @@
 var express = require('express');
 var os = require('os');
 var router = express.Router();
-var posts = require("../data/sl2018.json");
+var posts = require("../data/sl2019.json");
 var typogr = require('typogr');
+const { create } = require('xmlbuilder2');
 const _ = require('lodash');
 
 function get_the_event( post ) {
@@ -35,15 +36,12 @@ var build = function( posts ) {
 	for ( var i = posts.length - 1; i >= 0; i-- ) {
 		var slug = posts[i].Audio,
 			title = posts[i].Title;
-
-			console.log(posts[i]);
-
 		// Let's get the event key
 		posts[i].tag = slug.substr( 0, 2 );
 
 		// Let's build the year.
 		var year = slug.substr( 2, 2 );
-		if ( year > 18 ) {
+		if ( year > 21 ) {
 			posts[i].year = 19 + year;
 		} else {
 			posts[i].year = 20 + year;
@@ -102,8 +100,15 @@ router.get('/posts', function(req, res) {
 });
 
 /* GET home page. */
-router.get('/sheets', function (req, res) {
-	res.send({ title: 'Sunstone Podcast Import', posts: build( posts ) });
+router.get('/xml', function (req, res) {
+	const obj = {
+		posts: {
+			posts,
+		}
+	};
+	const doc = create(obj);
+	const xml = doc.end({ prettyPrint: true});
+	res.send(xml);
 });
 
 module.exports = router;
