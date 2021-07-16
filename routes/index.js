@@ -1,8 +1,15 @@
 var express = require('express');
 var os = require('os');
 var router = express.Router();
-var posts = require("../data/sl2019.json");
+var posts = require("../data/sl2020.json");
 var typogr = require('typogr');
+var MarkdownIt = require('markdown-it');
+// enable everything
+var md = require('markdown-it')({
+  html: true,
+  linkify: true,
+  typographer: true
+});
 const { create } = require('xmlbuilder2');
 const _ = require('lodash');
 
@@ -74,7 +81,9 @@ var build = function( posts ) {
 		var desc = _.get(posts[i], 'Description');
 		posts[i].Description = posts[i].Description.replace(slug + ',', '');
 		posts[i].Description = typogr(posts[i].Description).chain().initQuotes().smartypants().value();
-		posts[i].Description = posts[i].Description.replace(/\n?\r\n/g, '<br />' );
+		// posts[i].Description = posts[i].Description.replace(/\n?\r\n/g, '<br />' );
+
+		posts[i].Description = md.render(posts[i].Description);
 
 
 		// Let's get the event listing.

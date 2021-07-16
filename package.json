@@ -15,6 +15,7 @@
     "jade": "~1.5.0",
     "js2xmlparser": "^4.0.1",
     "lodash": "^4.17.5",
+    "markdown-it": "^12.1.0",
     "morgan": "~1.2.3",
     "serve-favicon": "~2.0.1",
     "typogr": "^0.6.7",
