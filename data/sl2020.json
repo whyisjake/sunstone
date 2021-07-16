@@ -191,7 +191,16 @@
   {
     "Audio": "SL20176",
     "Title": "Reframing the Grief in a Mixed-faith Marriage",
-    "Presenters": "Natasha Helfer Parker, LCMFT, CST; Sara Hughes-Zabawa; Jana Spangler; Jeff Lundgren, CMHC; Kattie Mount, Lisa Butterworth, Jennifer White, LCSW, Jenny Elledge, LMFT",
+    "Presenters": [
+      "Natasha Helfer Parker, LCMFT, CST",
+      "Sara Hughes-Zabawa",
+      "Jana Spangler",
+      "Jeff Lundgren, CMHC",
+      "Kattie Mount",
+      "Lisa Butterworth",
+      "Jennifer White, LCSW",
+      "Jenny Elledge, LMFT"
+    ],
     "Description": "As more Mormons experience faith transitions and faith awakenings, many couples find themselves grieving their mixed-faith marriages. In this session, we will explore both personal and professional insights into honoring both the challenging and beautiful aspects of differing beliefs in a marriage. We will highlight the gifts associated with individualization and fostering mutual respect for each person’s spiritual journey. We will offer suggestions on reducing conflict, improving communication, and strengthening a couple's emotional connection and intimacy.",
     "URL": "https://sunstonemagazine.com/audio/SL20176.mp3"
   },

@@ -57,7 +57,9 @@ var build = function( posts ) {
 		var presenters = _.get(posts[i], 'Presenters');
 
 		if ( presenters ) {
-			if ( presenters.indexOf(',') > 0 ) {
+			if ( _.isArray(presenters) ) {
+				posts[i].presenters = presenters;
+			} else if ( presenters.indexOf(',') > 0 ) {
 				posts[i].presenters = presenters.split(',');
 				for ( var idx = posts[i].presenters.length - 1; idx >= 0; idx-- ) {
 					posts[i].presenters[ idx ] = posts[i].presenters[idx].trim();
